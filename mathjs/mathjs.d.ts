@@ -1317,10 +1317,34 @@ declare namespace mathjs {
                 r: number;
 		phi: number;
         }
-
+	
+	export interface UnitJSON {
+		mathjs?: string;
+		value: number;
+		unit: string;
+		fixPrefix?: boolean
+ 	}
+	
 	export interface Unit {
-		to(unit: string): Unit;
-		toNumber(unit: string): number;
+		clone(): Unit;
+		
+		equalBase(unit: Unit): boolean;
+		
+		equals(unit: Unit): boolean;
+		
+		format(precision?: number): string;
+		
+		splitUnit(parts:string[]): string;
+
+		to(unitName: string): Unit;
+
+		toJSON(): UnitJSON;
+
+		toNumber(unitName: string): number;
+		
+		toNumeric(unitName: string): number|BigNumber|Fracton;
+
+		toString(): string;
 	}
 
 	export interface Index {
